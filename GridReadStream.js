@@ -10,19 +10,20 @@ class GridReadStream extends EventEmitter {
 
   run() {
     let self = this;
-    db.getFile(this._id).then(file=>{
-      fs.readFile(file.filename, (err, data)=>{
-        if(err){
-          self.emit("error",err);
+    db.getFile(this._id).then(file => {
+      fs.readFile(file.filename, (err, data) => {
+        if (err) {
+          self.emit("error", err);
           return;
         }
         self.emit("data", data);
-
+        self.emit("end");
       })
-    }).catch(err=>{
-      self.emit("error",err);
+    }).catch(err => {
+      self.emit("error", err);
     })
-    
+
+
   }
 }
 
