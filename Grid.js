@@ -1,17 +1,37 @@
+const Database = require("./Database");
 const GridWriteStream = require("./GridWriteStream");
 const GridReadStream = require("./GridReadStream");
+const fs = require("fs-extra");
 
-function Grid() { }
+class Grid {
+    constructor(metadataConnection) {
+        this.db = new Database(metadataConnection);
+    }
 
-Grid.prototype.createWriteStream = function (options) {
-  return new GridWriteStream(options);
-};
+    createWriteStream(options) {
+        return new GridWriteStream(this.db, options);
+    }
 
-Grid.prototype.createReadStream = function (options) {
-  return new GridReadStream(options);
+    createReadStream(options) {
+        return new GridReadStream(this.db, options);
+    }
+
+    async remove(options, cb) {
+        try {
+            if (!options._id) {
+                return cb(null);
+            }
+
+            let file = await this.db.getFile(options._id);
+            if (!file) {
+                throw new Error("File not found.");
+            }
+            await fs.unlink(file.filename);
+            return cb(null);
+        } catch (err) {
+            return cb(err);
+        }
+    }
 }
-Grid.prototype.remove = function (options, callback) {
-  console.log("Remove Options in Grid.js: ", options)
-  return;
-}
+
 module.exports = exports = Grid;
