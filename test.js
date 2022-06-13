@@ -6,7 +6,7 @@ async function main() {
     let connection = mongoose.createConnection(
         "mongodb://localhost:27017/fsmetadata"
     );
-    let gfs = new Grid(connection);
+    let gfs = new Grid(connection, "gridfs-local-files");
 
     console.log("Writing...");
     let outputStream = gfs.createWriteStream({

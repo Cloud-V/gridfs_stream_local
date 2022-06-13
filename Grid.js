@@ -4,12 +4,20 @@ const GridReadStream = require("./GridReadStream");
 const fs = require("fs-extra");
 
 class Grid {
-    constructor(metadataConnection) {
+    constructor(metadataConnection, gridfsFilesPath = "gridfs-files") {
         this.db = new Database(metadataConnection);
+        this.createFolderIfNotExists(gridfsFilesPath)
+        this.gridfsFilesPath = gridfsFilesPath;
+    }
+    createFolderIfNotExists(path) {
+        var dir = path;
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir);
+        }
     }
 
     createWriteStream(options) {
-        return new GridWriteStream(this.db, options);
+        return new GridWriteStream(this.db, this.gridfsFilesPath, options);
     }
 
     createReadStream(options) {

@@ -2,10 +2,10 @@ const EventEmitter = require("events");
 const fs = require("fs");
 
 class GridWriteStream extends EventEmitter {
-    constructor(db, options = {}) {
+    constructor(db, gridfsFilesPath, options = {}) {
         super(options);
         this.db = db;
-        this.filename = "gridfs-files/" + options.filename || "untitled.txt";
+        this.filename = gridfsFilesPath + "/" + (options.filename || "untitled.txt");
     }
     write(chunk) {
         this.db
@@ -28,7 +28,7 @@ class GridWriteStream extends EventEmitter {
                 this.emit("error", err);
             });
     }
-    end() {}
+    end() { }
 }
 
 module.exports = exports = GridWriteStream;
