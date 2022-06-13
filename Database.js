@@ -31,10 +31,6 @@ class Database {
         let entry = await this.File.findOne({ _id: id });
         return entry;
     }
-    async deleteFile(id) {
-        let entry = await this.File.deleteOne({ _id: id });
-        return entry;
-    }
 }
 
 module.exports = Database;
