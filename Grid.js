@@ -35,6 +35,7 @@ class Grid {
                 throw new Error("File not found.");
             }
             await fs.unlink(file.filename);
+            await this.db.deleteFile(options._id)
             return cb(null);
         } catch (err) {
             return cb(err);
