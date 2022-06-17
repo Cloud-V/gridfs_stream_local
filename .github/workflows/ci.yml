@@ -1,0 +1,15 @@
+name: CI
+
+on:
+  push:
+    branches: [ "*" ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: "Build"
+    runs-on: ubuntu-latest
+    steps:
+       - name: Lint
+         run: yarn lint
