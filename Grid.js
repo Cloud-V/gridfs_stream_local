@@ -6,7 +6,7 @@ const fs = require("fs-extra");
 class Grid {
     constructor(metadataConnection, gridfsFilesPath = "gridfs-files") {
         this.db = new Database(metadataConnection);
-        this.createFolderIfNotExists(gridfsFilesPath)
+        this.createFolderIfNotExists(gridfsFilesPath);
         this.gridfsFilesPath = gridfsFilesPath;
     }
     createFolderIfNotExists(path) {

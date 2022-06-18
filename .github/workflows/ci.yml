@@ -1,23 +1,23 @@
 name: CI
 
 on:
-  push:
-    branches: [ "*" ]
-  pull_request:
-  workflow_dispatch:
+    push:
+        branches: ["*"]
+    pull_request:
+    workflow_dispatch:
 
 jobs:
-  build:
-    name: "Build"
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 14
-      - name: Install Dependencies
-        run: yarn --production=false
-      - name: Lint
-        run: yarn lint
+    build:
+        name: "Build"
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+              with:
+                  fetch-depth: 0
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: 14
+            - name: Install Dependencies
+              run: yarn --production=false
+            - name: Lint
+              run: yarn lint
