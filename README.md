@@ -1,6 +1,5 @@
 # gridfs-stream-local
-
-Does the same functionality as gridfs-stream but stores the files locally instead of storing them in the database. It only stores the meta data of the files in the database.
+(WIP) Drop-in replacement for gridfs-stream, except it stores the files on-disk instead of storing them in the database. Only the metadata is stored in the database and still requires MongoDB. 
 
 ## How to run?
 
