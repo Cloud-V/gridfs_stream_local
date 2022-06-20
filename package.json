@@ -1,9 +1,9 @@
 {
-    "name": "gridfs-stream-local",
-    "version": "0.1.0",
+    "name": "gridfs_stream_local",
+    "version": "0.2.0",
     "description": "Local, mostly drop-in replacement to gridfs",
-    "main": "lib/index.js",
-    "repository": "https://github.com/Cloud-V/gridfs-stream-local",
+    "main": "Grid.js",
+    "repository": "https://github.com/Cloud-V/gridfs_stream_local",
     "author": "Omar Diaa <omardiaa500@gmail.com>",
     "license": "Apache-2.0",
     "private": false,
