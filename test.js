@@ -79,7 +79,7 @@ main()
         process.exit(0);
     })
     .catch((err) => {
-        console.error(err);
-        core.setFailed(err);
-        process.exit(-1);
+        console.log("An Error Occurred")
+        process.exit(1);
+        throw new Error("An Error occurred")
     });
