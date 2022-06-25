@@ -6,7 +6,9 @@ async function main() {
     const dbtype = process.env.dbtype ? 'mongo' : 'localhost'
 
     let connection = mongoose.createConnection(
-        'mongodb://' + dbtype + '/fsmetadata'
+        'mongodb://' + dbtype + '/fsmetadata', {
+        useNewUrlParser: true
+    }
     );
     connection.on("error", () => {
         return Promise.reject("Connection Failed.")
