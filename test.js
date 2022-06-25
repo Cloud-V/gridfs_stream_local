@@ -2,8 +2,11 @@ let Grid = require("./Grid");
 let mongoose = require("mongoose");
 
 async function main() {
+    mongoose.Promise = global.Promise
+    const dbtype = process.env.dbtype ? 'mongo' : 'localhost'
+
     let connection = mongoose.createConnection(
-        "mongodb://localhost:27017/fsmetadata"
+        'mongodb://' + dbtype + '/fsmetadata'
     );
     connection.on("error", () => {
         return Promise.reject("Connection Failed.")
