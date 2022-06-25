@@ -1,5 +1,6 @@
 let Grid = require("./Grid");
 let mongoose = require("mongoose");
+const core = require('@actions/core');
 
 async function main() {
     console.log("Connecting...");
@@ -77,5 +78,6 @@ main()
     })
     .catch((err) => {
         console.error(err);
+        core.setFailed(err);
         process.exit(-1);
     });
