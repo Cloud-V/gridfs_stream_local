@@ -17,8 +17,12 @@ class Database {
             "error",
             console.error.bind(console, "MongoDB connection error:")
         );
-
-        this.File = this.db.model("files", filesSchema);
+        try {
+            this.File = this.db.model("files");
+        } catch (error) {
+            console.log("Error Caught: ", error)
+            this.File = this.db.model("files", filesSchema);
+        }
     }
 
     async createFile(path) {
