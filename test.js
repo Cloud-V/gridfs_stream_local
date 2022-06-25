@@ -3,10 +3,12 @@ let mongoose = require("mongoose");
 const core = require('@actions/core');
 
 async function main() {
-    console.log("Connecting...");
     let connection = mongoose.createConnection(
         "mongodb://localhost:27017/fsmetadata"
     );
+    connection.on("error", () => {
+        return new Promise.reject("Connection Failed.")
+    })
     let gfs = new Grid(connection, "gridfs-local-files");
 
     console.log("Writing...");
