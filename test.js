@@ -1,6 +1,5 @@
 let Grid = require("./Grid");
 let mongoose = require("mongoose");
-const core = require('@actions/core');
 
 async function main() {
     let connection = mongoose.createConnection(
@@ -9,6 +8,10 @@ async function main() {
     connection.on("error", () => {
         return Promise.reject("Connection Failed.")
     })
+    connection.on("connected", () => {
+        console.log("Connection Created.")
+    })
+
     let gfs = new Grid(connection, "gridfs-local-files");
 
     console.log("Writing...");
@@ -73,14 +76,12 @@ async function main() {
         });
     });
 }
-process.exit(-1);
 main()
 
     .then(() => {
         process.exit(0);
     })
     .catch((err) => {
-        console.log("An Error Occurred")
+        console.error("An Error has occurred: ", err)
         process.exit(-1);
-        throw new Error("An Error occurred")
     });
