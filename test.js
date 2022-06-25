@@ -7,7 +7,7 @@ async function main() {
         "mongodb://localhost:27017/fsmetadata"
     );
     connection.on("error", () => {
-        return new Promise.reject("Connection Failed.")
+        return Promise.reject("Connection Failed.")
     })
     let gfs = new Grid(connection, "gridfs-local-files");
 
