@@ -19,6 +19,8 @@ jobs:
                   node-version: 14
             - name: Install Dependencies
               run: yarn --production=false
+            - name: Start Docker for Mongodb
+              run: docker run -d -p 27017:27017 mongo
             - name: Lint
               run: yarn lint
             - name: Testing
