@@ -75,11 +75,14 @@ async function main() {
 }
 
 main()
+
     .then(() => {
+        process.exit(-1);
+
         process.exit(0);
     })
     .catch((err) => {
         console.log("An Error Occurred")
-        process.exit(1);
+        process.exit(-1);
         throw new Error("An Error occurred")
     });
