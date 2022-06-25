@@ -8,7 +8,7 @@ async function main() {
     connection.on("error", () => {
         return Promise.reject("Connection Failed.")
     })
-    connection.on("connected", () => {
+    connection.on("open", () => {
         console.log("Connection Created.")
     })
 
@@ -23,7 +23,10 @@ async function main() {
 
     let file = await new Promise((resolve, reject) => {
         outputStream.on("err", (err) => {
-            return reject(err);
+            console.log(err)
+            return reject({
+                error: "Failed to write to file.",
+            });
         });
         outputStream.on("close", (file) => {
             return resolve(file);
