@@ -11,7 +11,7 @@ async function main() {
     }
     );
     connection.on("error", () => {
-        return Promise.reject("Connection Failed.")
+        throw ("Connection Failed")
     })
     connection.on("open", () => {
         console.log("Connection Created.")
